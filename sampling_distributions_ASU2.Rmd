@@ -26,12 +26,13 @@ Complete all **Exercises and Questions**.  Make sure you stage and commit all fi
 In this lab, you will explore the data using the `dplyr` package and visualize the data with the `ggplot2` package. The data can be found in the
 companion package for this course, `statsr`.
 
-Start by loading the packages `statsr`, `dplyr`, and `ggplot2`.
+Start by loading the packages `statsr`, `dplyr`, `scales`, and `ggplot2`.
 
 ```{r, label = "load-packages"}
 library(statsr)
 library(dplyr)
 library(ggplot2)
+library(scales)
 ```
 
 ### The data {-}
@@ -48,7 +49,7 @@ To explore the distribution of the homes' `area`s in the population of home sale
 
 ```{r, label = "area-hist", fig.cap = "Histogram of `area` (square feet)", echo = FALSE}
 ggplot(data = ames, aes(x = area)) +
-  geom_histogram(binwidth = 250, fill = "lightblue") + 
+  geom_histogram(binwidth = 250, fill = "lightblue", color = "black") + 
   labs(x = "Square feet", y = "Count") +
   theme_bw()
 ```
@@ -117,7 +118,7 @@ samp1 %>%
   summarize(xbar = mean(area))
 ```
 
-Depending on which 50 homes one selects, their estimate could be above or below the true population mean of 1,499.69 square feet. However, the sample mean is the best unbiased estimate of the population mean (average living area), and we were able to get it by sampling less than 3\% of the population.
+Depending on which 50 homes one selects, their estimate could be above or below the true population mean of `r round(POP$mu,2)` square feet. However, the sample mean is the best unbiased estimate of the population mean (average living area), and we were able to get it by sampling less than 3\% of the population.
 
 2. Suppose we took two more samples, one of size 100 and one of size 1000. Which would you think would provide a more accurate estimate of the population mean?
 <ol>
@@ -144,12 +145,13 @@ Not surprisingly, every time a new random sample is generated, the resulting sam
 ```{r label = "loop"}
 sample_means50 <- ames %>%
                     rep_sample_n(size = 50, reps = 15000, replace = TRUE) %>%
+                    group_by(replicate) %>% 
                     summarize(x_bar = mean(area))
 ```
 
 ```{r, label = "SampleMean", fig.cap = "Sampling distribution of the sample mean", echo = FALSE}
 ggplot(data = sample_means50, aes(x = x_bar)) +
-  geom_histogram(binwidth = 20, fill = "lightblue") + 
+  geom_histogram(binwidth = 20, fill = "lightblue", color = "black") + 
   theme_bw() + 
   labs(x = expression(bar(x))) 
 ```
@@ -249,7 +251,7 @@ Mechanics aside, consider the reason one used the `rep_sample_n` function: to co
 
 ```{r, label = "hist", fig.cap = "Sampling distribution of the sample mean ($\\bar{x}$)"}
 ggplot(data = sample_means50, aes(x = x_bar)) +
-  geom_histogram(binwidth = 20, fill = "lightblue") + 
+  geom_histogram(binwidth = 20, fill = "lightblue", color = "black") + 
   theme_bw() + 
   labs(x = expression(bar(x)))
 ```
