@@ -156,10 +156,10 @@ ggplot(data = sample_means50, aes(x = x_bar)) +
   labs(x = expression(bar(x))) 
 ```
 
-In the previous code, `R` generates 15,000 samples each of size 50 from the population, computes the mean of each sample of size 50, and stores the result in a vector called `sample_means50`. 
+In the previous code, `R` generates 15,000 samples each of size 50 from the population, computes the mean of each sample of size 50, and stores the result in a vector (`x_bar`) of the `sample_means50` tibble. 
 
 <div id="exercise">
-**Exercise 2**: How many elements are there in `sample_means50`?  Describe the sampling distribution, and be sure to note its center. Make sure to include a plot of the distribution in your answer.
+**Exercise 2**: How many rows are there in `sample_means50`?  Describe the sampling distribution, and be sure to note its center. Make sure to include a plot of the distribution in your answer.
 </div>
 
 ```{r, label = "ANSques"}
@@ -197,7 +197,7 @@ The resulting sample means would be stored each time in a separate object.
 Note that for each of the 15,000 times a mean was computed, it was done from a **different** sample!
 
 <div id="exercise">
-**Exercise 3**: To make sure you understand how sampling distributions are built and exactly what the `rep_sample_n` function is doing, try modifying the code to create a sampling distribution of **25 sample means** from **samples of size 10**, and put them in a data frame named `sample_means_small`. Print the output. How many observations are there in this object called `sample_means_small`? What does each observation represent?
+**Exercise 3**: To make sure you understand how sampling distributions are built and exactly what the `rep_sample_n` function is doing, try modifying the code to create a sampling distribution of **25 sample means** from **samples of size 10**, and put them in a data frame named `sample_means_small`. Print the output. What are the dimensions of the object called `sample_means_small`? What does each row represent?
 </div>
 
 ```{r, label = "practice-sampling-dist"}
@@ -211,7 +211,7 @@ Type your answer for **Exercise 3** here and delete this sentence.
 
 </div>
 
-3. How many elements are there in this object called `sample_means_small`? 
+3. How many rows are there in this object called `sample_means_small`? 
 <ol>
 <li> 0 </li>
 <li> 3 </li>
@@ -305,7 +305,7 @@ Type your answer for Exercise 5 here and delete this sentence.
 </div>
 
 <div id="exercise">
-**Exercise 6**: Since you have access to the population, simulate the sampling distribution for $\bar{x}_{price}$ by taking 5000 samples of size 50 from the population  and computing 5000 sample means.  Store these means in a vector called `sample_means50`. Plot the data; then, describe the shape of this sampling distribution. Based on this sampling distribution, what would you guess the mean home price of the population to be?
+**Exercise 6**: Since you have access to the population, simulate the sampling distribution for $\bar{x}_{price}$ by taking 5000 samples of size 50 from the population  and computing 5000 sample means.  Store these means in a vector named `x_bar` in a tibble named `sample_means50`. Plot the data; then, describe the shape of this sampling distribution. Based on this sampling distribution, what would you guess the mean home price of the population to be?
 </div>
 
 ```{r, label = "price-sampling"}
@@ -320,7 +320,7 @@ Type your answer for **Exercise 6** here and delete this sentence.
 </div>
 
 <div id="exercise">
-**Exercise 7**: Change your sample size from 50 to 150. Then, compute a simulated  sampling distribution using the same method as above, and store these means in a new vector called `sample_means150`. Describe the shape of this simulated sampling distribution, and compare it to the simulated sampling distribution for a sample size of 50.  Based on this simulated sampling distribution, what would you estimate the mean sale price of homes in Ames is?
+**Exercise 7**: Change your sample size from 50 to 150. Then, compute a simulated  sampling distribution using the same method as above, and store these means in an object named `x_bar` in the `sample_means150` tibble. Describe the shape of this simulated sampling distribution, and compare it to the simulated sampling distribution for a sample size of 50.  Based on this simulated sampling distribution, what would you estimate the mean sale price of homes in Ames is?
 </div>
 
 ```{r, label = "price-sampling-more"}
@@ -338,7 +338,7 @@ ______
 
 So far, the focus has been on estimating the mean price for homes in Ames. Next, you will try to estimate the mean living area.
 
-Note that while you might be able to answer some of these questions using the app, you are expected to write the required code and produce the necessary plots and summary statistics. You are welcomed to use the app for exploration.
+Note that while you might be able to answer some of these questions using the app, you are expected to write the required code and produce the necessary plots and summary statistics. You are welcome to use the app for exploration.
 
 <div id="exercise">
 **Exercise 8**: Take a sample of size 15 from the population and calculate the mean `area` of the homes in this sample. Using this sample, what is your best point estimate of the population mean area of homes?
@@ -356,7 +356,7 @@ Type your answer for **Exercise 8** here and delete this sentence.
 </div>
 
 <div id="exercise">
-**Exercise 9**: Since you have access to the population, simulate the sampling distribution for $\bar{x}_{area}$ by taking 2000 samples from the population of size 15 and computing 2000 sample means. Store these means in a vector called `sample_means15`. Plot the data; then, describe the shape of this simulated sampling distribution. Based on this simulated sampling distribution, what would you estimate the mean home area of the population is? Finally, calculate and report the population mean.
+**Exercise 9**: Since you have access to the population, simulate the sampling distribution for $\bar{x}_{area}$ by taking 2000 samples from the population of size 15 and computing 2000 sample means. Store these means in a vector named `x_bar` in a tibble named `sample_means15`. Plot the data; then, describe the shape of this simulated sampling distribution. Based on this simulated sampling distribution, what would you estimate the mean home area of the population is? Finally, calculate and report the population mean.
 </div>
 
 ```{r, label = "area-sampling-small"}
@@ -372,7 +372,7 @@ Type your answer for **Exercise 9** here and delete this sentence.
 
 
 <div id="exercise">
-**Exercise 10**: Change your sample size from 15 to 150. Then, compute the simulated sampling distribution using the same method as above, and store these means in a new vector called `sample_means150`. Describe the shape of this simulated sampling distribution, and compare it to the simulated sampling distribution for a sample size of 15. Based on this simulated sampling distribution, what would you estimate the mean area of homes in Ames is?
+**Exercise 10**: Change your sample size from 15 to 150. Then, compute the simulated sampling distribution using the same method as above, and store these means in a vector called `x_bar` in a tibble named `sample_means150`. Describe the shape of this simulated sampling distribution, and compare it to the simulated sampling distribution for a sample size of 15. Based on this simulated sampling distribution, what would you estimate the mean area of homes in Ames is?
 </div>
 
 ```{r, label = "area-sampling-big"}
