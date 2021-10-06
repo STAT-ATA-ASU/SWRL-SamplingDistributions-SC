@@ -4,7 +4,7 @@ output:
     bookdown::html_document2
 author: "Your Name Goes Here"
 css: "lab.css"
-date: 'Last compiled: `r format(Sys.time(), "%b %d, %Y")`'
+date: 'Last compiled: `r format(Sys.time(), "%B %d, %Y at %X")`'
 ---
 
 <div id="license">
@@ -62,8 +62,9 @@ POP <- ames %>%
             sigma = sd(area)*sqrt((length(area) - 1)/length(area)), pop_iqr = IQR(area),
             pop_min = min(area), pop_max = max(area),
             pop_q1 = quantile(area, 0.25),  # first quartile, 25th percentile
-            pop_q3 = quantile(area, 0.75))  # third quartile, 75th percentile
-knitr::kable(POP, caption = "Population Parameters", col.names = c("$\\mu$", "$\\theta$", "$\\sigma$", "$IQR$", "$MIN$", "$MAX$", "$Q_1$", "$Q_3$"))
+            pop_q3 = quantile(area, 0.75),  # third quartile, 75th percentile
+            G1 = e1071::skewness(area))
+knitr::kable(POP, caption = "Population Parameters", col.names = c("$\\mu$", "$\\theta$", "$\\sigma$", "$\\text{IQR}$", "$\\text{MIN}$", "$\\text{MAX}$", "$\\text{Q}_1$", "$\\text{Q}_3$", "$\\text{G}_1$"))
 ```
 
 1.  Which of the following is **false**?
@@ -107,6 +108,8 @@ This command creates a simple random sample of `size` 50 from the `ames` data-se
 <div id="answer">
 Type your answer for **Exercise 1** here and delete this sentence.
 
+
+When reporting area be sure to report with proper units.  That is, $\text{ft}^2$.
 
 </div>
 
